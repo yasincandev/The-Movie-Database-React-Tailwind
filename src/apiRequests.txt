@@ -1,0 +1,54 @@
+popular movies : https://api.themoviedb.org/3/movie/popular?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+upcoming movies : https://api.themoviedb.org/3/movie/upcoming?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+top rated movies : https://api.themoviedb.org/3/movie/top_rated?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+movie details : https://api.themoviedb.org/3/movie/550?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+movie credits : https://api.themoviedb.org/3/movie/550/credits?api_key=f9b782d65783fa18e1e4fa3a4103733d
+
+movie trailer : https://api.themoviedb.org/3/movie/550/videos?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+
+
+popular tv shows: https://api.themoviedb.org/3/tv/popular?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+top rated tv shows: https://api.themoviedb.org/3/tv/top_rated?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+tv shows on the air: https://api.themoviedb.org/3/tv/on_the_air?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+tv shows airing today: https://api.themoviedb.org/3/tv/airing_today?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
+
+tv show details: https://api.themoviedb.org/3/tv/1399?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+tv latest: https://api.themoviedb.org/3/tv/latest?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+tv details : https://api.themoviedb.org/3/tv/1399?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+search movie: https://api.themoviedb.org/3/search/movie?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&query=avengers&page=1&include_adult=false
+
+search tv show: https://api.themoviedb.org/3/search/tv?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&query=game%20of%20thrones&page=1&include_adult=false
+
+multi search: https://api.themoviedb.org/3/search/multi?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&query=avengers&page=1&include_adult=false
+
+tending movies of week: https://api.themoviedb.org/3/trending/movie/week?api_key=f9b782d65783fa18e1e4fa3a4103733d
+
+tending tv shows of week: https://api.themoviedb.org/3/trending/tv/week?api_key=f9b782d65783fa18e1e4fa3a4103733d
+
+tending people of week: https://api.themoviedb.org/3/trending/person/week?api_key=f9b782d65783fa18e1e4fa3a4103733d
+
+configuration: https://api.themoviedb.org/3/configuration?api_key=f9b782d65783fa18e1e4fa3a4103733d
+
+
+person details: https://api.themoviedb.org/3/person/1356210?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+person combined credits: https://api.themoviedb.org/3/person/1356210/combined_credits?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+person external ids: https://api.themoviedb.org/3/person/287/external_ids?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+person images: https://api.themoviedb.org/3/person/287/images?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+latest people : https://api.themoviedb.org/3/person/latest?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US
+
+popular people: https://api.themoviedb.org/3/person/popular?api_key=f9b782d65783fa18e1e4fa3a4103733d&language=en-US&page=1
