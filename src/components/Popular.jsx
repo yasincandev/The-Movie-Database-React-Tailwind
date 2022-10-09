@@ -1,10 +1,10 @@
 import React from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from "swiper";
+import { A11y, Autoplay, FreeMode, Navigation, Pagination } from "swiper";
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import "../index.css";
 import { Link } from "react-router-dom";
 
 const Popular = () => {
@@ -15,6 +15,8 @@ const Popular = () => {
     topRatedMovies,
     popularTv,
     people,
+    scrollToTop,
+    swiperProps,
   } = useGlobalContext();
 
   const replaceImage = (error) => {
@@ -22,17 +24,13 @@ const Popular = () => {
       "https://via.placeholder.com/185x278/ffffff/000000.png?text=No+Image+Found";
   };
 
-  const topRatedMoviesImagesandLinks = topRatedMovies.map((movie) => {
+  const topRatedImagesSlide = topRatedMovies.map((movie) => {
     return (
-      <SwiperSlide
-        key={movie.id}
-        className="p-2 border-double border-8 border-indigo-500 rounded-lg"
-      >
-        <Link to={`/movies/${movie.id}`}>
+      <SwiperSlide key={movie.id}>
+        <Link onClick={scrollToTop} to={`/movie/${movie.id}`}>
           <img
             src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
             alt={movie.title}
-            className="rounded-lg"
             onError={replaceImage}
           />
         </Link>
@@ -42,11 +40,8 @@ const Popular = () => {
 
   const popularTvImagesandLinks = popularTv.map((tvshow) => {
     return (
-      <SwiperSlide
-        key={tvshow.id}
-        className="p-2 border-double border-8 border-indigo-500 rounded-lg"
-      >
-        <Link to={`/tv/${tvshow.id}`}>
+      <SwiperSlide key={tvshow.id}>
+        <Link onClick={scrollToTop} to={`/tv/${tvshow.id}`}>
           <img
             src={`https://image.tmdb.org/t/p/w185${tvshow.poster_path}`}
             alt={tvshow.name}
@@ -60,11 +55,8 @@ const Popular = () => {
 
   const peopleImagesandLinks = people.map((person) => {
     return (
-      <SwiperSlide
-        key={person.id}
-        className="p-2 border-double border-8 border-indigo-500 rounded-lg"
-      >
-        <Link to={`/people/${person.id}`}>
+      <SwiperSlide key={person.id}>
+        <Link onClick={scrollToTop} to={`/people/${person.id}`}>
           <img
             src={`https://image.tmdb.org/t/p/w185${person.profile_path}`}
             alt={person.name}
@@ -77,58 +69,45 @@ const Popular = () => {
   });
 
   return (
-    <div className="px-4 py-16  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
-      <div>
+    <div className="flex flex-col gap-7 w-11/12 p-4">
+      <>
         <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10  decoration-blue-400 dark:decoration-blue-600">
           Movies
         </h3>
+
+        <Swiper
+          {...swiperProps}
+          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
+        >
+          {topRatedImagesSlide}
+        </Swiper>
+      </>
+
+      <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
+        Tv Shows
+      </h3>
+
+      <div className=" w-full h-full">
+        <Swiper
+          {...swiperProps}
+          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
+        >
+          {popularTvImagesandLinks}
+        </Swiper>
       </div>
-      <Swiper
-        slidesPerView={6}
-        spaceBetween={5}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-        {topRatedMoviesImagesandLinks}
-      </Swiper>
-      <div className="mt-10">
-        <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
-          Tv Shows
-        </h3>
+
+      <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
+        People
+      </h3>
+
+      <div className=" w-full h-full">
+        <Swiper
+          {...swiperProps}
+          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
+        >
+          {peopleImagesandLinks}
+        </Swiper>
       </div>
-      <Swiper
-        slidesPerView={6}
-        spaceBetween={5}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-        {popularTvImagesandLinks}
-      </Swiper>
-      <div className="mt-10">
-        <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
-          People
-        </h3>
-      </div>
-      <Swiper
-        slidesPerView={6}
-        spaceBetween={5}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-        {peopleImagesandLinks}
-      </Swiper>
     </div>
   );
 };

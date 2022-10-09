@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context/GlobalContext";
 
 const Search = () => {
   const [query, setQuery] = useState("");
   const [multiSearch, setMultiSearch] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { scrollToTop } = useGlobalContext;
 
   useEffect(() => {
     const fetchMultiSearch = async () => {
@@ -47,12 +49,15 @@ const Search = () => {
           ) : (
             <>
               {query.length > 3 && (
-                <div className=" w-3/5 h-96 overflow-scroll top-16 flex flex-col items-center gap-3 text-black  p-3 rounded-md">
+                <div className=" w-full  overflow-scroll top-16 flex flex-col items-center gap-3 text-black  p-3 rounded-md">
                   <h1 className="text-2xl font-bold">Search Results</h1>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                     {multiSearch.map((item) => (
                       <div className=" flex items-center flex-col">
-                        <Link to={`/${item.media_type}/${item.id}`}>
+                        <Link
+                          onClick={scrollToTop}
+                          to={`/${item.media_type}/${item.id}`}
+                        >
                           <img
                             src={`https://image.tmdb.org/t/p/w154${item.poster_path}`}
                             alt="poster"

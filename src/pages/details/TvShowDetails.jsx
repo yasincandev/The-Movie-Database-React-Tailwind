@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper";
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import DetailsNavbar from "./DetailsNavbar";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const TvShowDetails = () => {
   const [tvShowDetails, setTvShowDetails] = useState([]);
@@ -14,6 +15,8 @@ const TvShowDetails = () => {
   const id = useParams();
   const navigate = useNavigate();
   const tvShowId = id.id;
+
+  const { scrollToTop } = useGlobalContext();
 
   useEffect(() => {
     const fetchTvShowDetails = async () => {
@@ -54,7 +57,7 @@ const TvShowDetails = () => {
   const castInfoSlide = tvShowCast.map((cast) => {
     return (
       <SwiperSlide className="flex flex-col items-center " key={cast.id}>
-        <Link to={`/people/${cast.id}`}>
+        <Link onClick={scrollToTop} to={`/people/${cast.id}`}>
           <img
             className="rounded-lg"
             src={`https://image.tmdb.org/t/p/w154${cast.profile_path}`}
@@ -150,8 +153,7 @@ const TvShowDetails = () => {
       <Swiper
         slidesPerView={7}
         spaceBetween={10}
-        freeMode={true}
-        modules={[FreeMode]}
+        modules={[Pagination]}
         className="mySwiper"
       >
         {castInfoSlide}

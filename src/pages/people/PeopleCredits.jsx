@@ -4,13 +4,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination, FreeMode } from "swiper";
+import { Navigation, Pagination, FreeMode, Autoplay, A11y } from "swiper";
 import { Link, useParams } from "react-router-dom";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const PeopleCredits = () => {
   const [movieCredits, setMovieCredits] = useState([]);
   const [tvCredits, setTvCredits] = useState([]);
 
+  const { scrollToTop, swiperProps } = useGlobalContext();
   const id = useParams();
 
   const peopleId = id.id;
@@ -43,17 +45,15 @@ const PeopleCredits = () => {
   return (
     <div>
       <Swiper
-        modules={[Navigation, Pagination, FreeMode]}
-        slidesPerView={6}
-        navigation={true}
-        freeMode={true}
-        className="mySwiper"
+        {...swiperProps}
+        modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
       >
         {movieCredits.map((movie) => (
           <SwiperSlide key={movie.id}>
             <Link
+              onClick={scrollToTop}
               className="flex flex-col items-center"
-              to={`/movies/${movie.id}`}
+              to={`/movie/${movie.id}`}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
@@ -67,7 +67,11 @@ const PeopleCredits = () => {
         ))}
         {tvCredits.map((tv) => (
           <SwiperSlide key={tv.id}>
-            <Link className="flex flex-col items-center" to={`/tv/${tv.id}`}>
+            <Link
+              onClick={scrollToTop}
+              className="flex flex-col items-center"
+              to={`/tv/${tv.id}`}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w185${tv.poster_path}`}
                 alt={tv.name}

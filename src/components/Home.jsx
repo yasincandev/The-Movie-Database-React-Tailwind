@@ -6,7 +6,7 @@ import Search from "./Search";
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 ">
       <Header />
       <Search />
       <Hero />

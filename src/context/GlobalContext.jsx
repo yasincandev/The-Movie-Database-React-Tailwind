@@ -140,13 +140,6 @@ export const GlobalProvider = ({ children }) => {
 
   /* SEARCH AREA */
 
-  const navigation = [
-    { name: "Movies", path: "/movies" },
-    { name: "TV Shows", path: "/tv" },
-    { name: "Trending", path: "/trending" },
-    { name: "People", path: "/people" },
-  ];
-
   const backdropPath = popularMovies.map((movie) => movie.backdrop_path);
 
   const images = backdropPath.map((image) => {
@@ -165,9 +158,78 @@ export const GlobalProvider = ({ children }) => {
     return `https://image.tmdb.org/t/p/w185${image}`;
   });
 
+  const swiperProps = {
+    spaceBetween: 30,
+    slidesPerView: 5,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      180: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      280: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+      },
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      768: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 5,
+        spaceBetween: 50,
+      },
+      1280: {
+        slidesPerView: 6,
+        spaceBetween: 60,
+      },
+      1440: {
+        slidesPerView: 6,
+        spaceBetween: 70,
+      },
+    },
+    freeMode: true,
+    a11y: {
+      prevSlideMessage: "Previous slide",
+      nextSlideMessage: "Next slide",
+      firstSlideMessage: "This is the first slide",
+      lastSlideMessage: "This is the last slide",
+      paginationBulletMessage: "Go to slide {{index}}",
+    },
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
+        scrollToTop,
         people,
         movieDetails,
         setMovieDetails,
@@ -185,9 +247,10 @@ export const GlobalProvider = ({ children }) => {
 
         loading,
         images,
-        navigation,
+
         tvshowImages,
         peopleImages,
+        swiperProps,
       }}
     >
       {children}

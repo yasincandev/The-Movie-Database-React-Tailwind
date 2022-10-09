@@ -10,14 +10,16 @@ import Trending from "./pages/trending/Trending";
 import MovieDetails from "./pages/details/MovieDetails";
 import TvShowDetails from "./pages/details/TvShowDetails";
 import PeopleDetails from "./pages/details/PeopleDetails";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
     <GlobalProvider>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/results" element={<SearchResults />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/tv" element={<TvShows />} />
         <Route path="/tv/:id" element={<TvShowDetails />} />
         <Route path="/trending" element={<Trending />} />

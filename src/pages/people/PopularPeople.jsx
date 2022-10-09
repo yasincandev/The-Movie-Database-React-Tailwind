@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { A11y, Autoplay, FreeMode, Navigation, Pagination } from "swiper";
 import { Link } from "react-router-dom";
 
 const PopularPeople = () => {
-  const { people, loading } = useGlobalContext();
+  const { people, loading, scrollToTop, swiperProps } = useGlobalContext();
 
   const handleError = (e) => {
     e.target.src =
@@ -22,32 +22,30 @@ const PopularPeople = () => {
           Popular Celebs
         </h1>
         <Swiper
-          slidesPerView={6}
-          slidesPerGroup={5}
-          spaceBetween={30}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
+          {...swiperProps}
+          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
         >
           {people.map((person) => {
             return (
               <SwiperSlide key={person.id}>
                 <Link
+                  onClick={scrollToTop}
                   to={`/people/${person.id}`}
                   className=" flex flex-col gap-2"
                   id={person.id}
                 >
-                  <img
-                    className="rounded-lg"
-                    src={`https://image.tmdb.org/t/p/w185${person.profile_path}`}
-                    alt="person"
-                    onError={handleError}
-                  />
-
-                  <div className="ml-10">
-                    <h1 className="text-lg font-bold mt-4">{person.name}</h1>
+                  <div className="">
+                    <img
+                      className="rounded-lg"
+                      src={`https://image.tmdb.org/t/p/w185${person.profile_path}`}
+                      alt="person"
+                      onError={handleError}
+                    />
+                  </div>
+                  <div className="mt-10">
+                    <h1 className="text-sm lg:text-lg font-bold mt-4">
+                      {person.name}
+                    </h1>
                   </div>
                 </Link>
               </SwiperSlide>

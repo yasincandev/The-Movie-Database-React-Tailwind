@@ -2,16 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper";
+import { A11y, Autoplay, FreeMode, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import DetailsNavbar from "./DetailsNavbar";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
   const [imdb, setImdb] = useState([]);
 
+  const { swiperProps, scrollToTop } = useGlobalContext();
   const id = useParams();
 
   const movieId = id.id;
@@ -54,7 +56,7 @@ const MovieDetails = () => {
   const castInfoSlide = movieCast.map((cast) => {
     return (
       <SwiperSlide className="flex flex-col items-center " key={cast.id}>
-        <Link to={`/people/${cast.id}`}>
+        <Link onClick={scrollToTop} to={`/people/${cast.id}`}>
           <img
             className="rounded-lg"
             src={`https://image.tmdb.org/t/p/w154${cast.profile_path}`}
@@ -151,11 +153,8 @@ const MovieDetails = () => {
         <h2 className="text-4xl font-semibold">Cast</h2>
       </div>
       <Swiper
-        slidesPerView={7}
-        spaceBetween={10}
-        freeMode={true}
-        modules={[FreeMode]}
-        className="mySwiper"
+        {...swiperProps}
+        modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
       >
         {castInfoSlide}
       </Swiper>

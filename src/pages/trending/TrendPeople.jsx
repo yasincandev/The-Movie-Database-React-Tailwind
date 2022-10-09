@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { A11y, Autoplay, FreeMode, Navigation, Pagination } from "swiper";
 import { Link } from "react-router-dom";
 
 const TrendPeople = () => {
-  const { trendPeople, loading } = useGlobalContext();
+  const { trendPeople, loading, scrollToTop, swiperProps } = useGlobalContext();
 
   const handleNullError = (person) => {
     if (person.profile_path === null) {
@@ -22,21 +22,17 @@ const TrendPeople = () => {
     <div className="w-full  flex flex-col gap-8 ">
       <div className="w-full bg-slate-100 rounded-lg shadow-md p-10">
         <h1 className="mb-10 text-xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl  underline underline-offset-3 decoration-10  decoration-blue-400 dark:decoration-blue-600  ">
-          Trending Movies of The Week
+          Trending Celebs of The Week
         </h1>
         <Swiper
-          slidesPerView={6}
-          slidesPerGroup={5}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
+          {...swiperProps}
+          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
         >
           {trendPeople.map((people) => {
             return (
               <SwiperSlide key={people.id}>
                 <Link
+                  onClick={scrollToTop}
                   to={`/people/${people.id}`}
                   className=" flex flex-col gap-2"
                   id={people.id}
@@ -48,8 +44,8 @@ const TrendPeople = () => {
                       alt="people"
                     />
                   </div>
-                  <div className="">
-                    <h1 className="ml-5 text-lg font-bold mt-4">
+                  <div className="mt-10">
+                    <h1 className="text-sm lg:text-lg font-bold mt-4">
                       {people.name}
                     </h1>
                   </div>

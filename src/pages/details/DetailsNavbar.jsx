@@ -2,10 +2,8 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { HiMenu, HiOutlineX } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from "../../context/GlobalContext";
 
 const DetailsNavbar = () => {
-  const { navigation } = useGlobalContext();
   return (
     <Popover>
       <div className="relative px-4 pt-6 sm:px-6 lg:px-8">
@@ -32,15 +30,36 @@ const DetailsNavbar = () => {
             </div>
           </div>
           <div className="hidden md:ml-10 md:block md:space-x-8 md:pr-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="font-medium text-gray-500 hover:text-gray-900"
-              >
-                {item.name}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              className="font-medium text-gray-500 hover:text-gray-900"
+            >
+              Home
+            </Link>
+            <Link
+              to="/movies"
+              className="font-medium text-gray-500 hover:text-gray-900"
+            >
+              Movies
+            </Link>
+            <Link
+              to="/tv"
+              className="font-medium text-gray-500 hover:text-gray-900"
+            >
+              Tv Shows
+            </Link>
+            <Link
+              to="/trending"
+              className="font-medium text-gray-500 hover:text-gray-900"
+            >
+              Trending
+            </Link>
+            <Link
+              to="/people"
+              className="font-medium text-gray-500 hover:text-gray-900"
+            >
+              People
+            </Link>
           </div>
         </nav>
       </div>
@@ -75,15 +94,36 @@ const DetailsNavbar = () => {
               </div>
             </div>
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                >
-                  {item.name}
-                </a>
-              ))}
+              <Link
+                to="/"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                Home
+              </Link>
+              <Link
+                to="/movies"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                Movies
+              </Link>
+              <Link
+                to="/tv"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                Tv Shows
+              </Link>
+              <Link
+                to="/trending"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                Trending
+              </Link>
+              <Link
+                to="/people"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                People
+              </Link>
             </div>
           </div>
         </Popover.Panel>

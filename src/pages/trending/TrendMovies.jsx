@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { A11y, Autoplay, FreeMode, Navigation, Pagination } from "swiper";
 import { Link } from "react-router-dom";
 
 const TrendMovies = () => {
-  const { trendMovies, loading } = useGlobalContext();
+  const { trendMovies, loading, scrollToTop, swiperProps } = useGlobalContext();
   return (
     <div className="w-full  flex flex-col gap-8 ">
       <div className="w-full bg-slate-100 rounded-lg shadow-md p-10">
@@ -16,19 +16,15 @@ const TrendMovies = () => {
           Trending Movies of The Week
         </h1>
         <Swiper
-          slidesPerView={6}
-          slidesPerGroup={5}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
+          {...swiperProps}
+          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
         >
           {trendMovies.map((movie) => {
             return (
               <SwiperSlide key={movie.id}>
                 <Link
-                  to={`/movies/${movie.id}`}
+                  onClick={scrollToTop}
+                  to={`/movie/${movie.id}`}
                   className=" flex flex-col gap-2"
                   id={movie.id}
                 >
@@ -39,14 +35,14 @@ const TrendMovies = () => {
                       alt="movie"
                     />
 
-                    <div className="absolute right-0 bottom-0 left-0 bg-yellow-400 rounded-full w-5 h-5 flex items-center justify-center p-4 ">
-                      <span className="text-black text-md font-bold ">
-                        {movie.vote_average}
-                      </span>
-                    </div>
+                    <span className="absolute right-0 bottom-0 left-0 bg-yellow-400 rounded-full w-2 h-2 flex items-center justify-center p-4 ">
+                      {movie.vote_average}
+                    </span>
                   </div>
                   <div className="mt-10">
-                    <h1 className="text-lg font-bold mt-4">{movie.title}</h1>
+                    <h1 className="text-sm lg:text-lg font-bold mt-4">
+                      {movie.title}
+                    </h1>
                   </div>
                 </Link>
               </SwiperSlide>
