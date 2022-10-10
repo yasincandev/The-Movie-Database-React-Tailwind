@@ -49,10 +49,10 @@ const Header = () => {
               <p className="mt-3 text-base text-gray-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
                 The Movie Database (TMDB) is a community built movie and TV
                 database. Every piece of data has been added by our amazing
-                community dating back to 2008. TMDb's strong international focus
-                and breadth of data is largely unmatched and something we're
+                community dating back to 2008. TMDBs strong international focus
+                and breadth of data is largely unmatched and something we are
                 incredibly proud of. Put simply, we live and breathe community
-                and that's precisely what makes us different.
+                and that is precisely what makes us different.
               </p>
             </div>
           </main>
