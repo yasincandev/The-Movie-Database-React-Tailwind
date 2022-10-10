@@ -12,14 +12,15 @@ import DetailsNavbar from "./DetailsNavbar";
 
 const PeopleDetails = () => {
   const [peopleDetails, setPeopleDetails] = useState([]);
-
   const [allExternalIds, setAllExternalIds] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const id = useParams();
 
   const peopleId = id.id;
 
   useEffect(() => {
+    setLoading(true);
     const fetchPeopleDetails = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/person/${peopleId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
@@ -27,9 +28,11 @@ const PeopleDetails = () => {
       setPeopleDetails(data);
     };
     fetchPeopleDetails();
+    setLoading(false);
   }, [peopleId, setPeopleDetails]);
 
   useEffect(() => {
+    setLoading(true);
     const fetchAllExternalIds = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/person/${peopleId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
@@ -37,6 +40,7 @@ const PeopleDetails = () => {
       setAllExternalIds(data);
     };
     fetchAllExternalIds();
+    setLoading(false);
   }, [peopleId, setAllExternalIds]);
 
   const replaceImage = (error) => {
@@ -103,12 +107,18 @@ const PeopleDetails = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="flex flex-col md:flex-row">
           <div className="flex-none">
-            <img
-              src={`https://image.tmdb.org/t/p/w300${peopleDetails.profile_path}`}
-              alt="poster"
-              onError={replaceImage}
-              className="rounded-lg"
-            />
+            {loading ? (
+              <div className="animate-pulse">
+                <div className="bg-slate-800 w-64 h-96"></div>
+              </div>
+            ) : (
+              <img
+                src={`https://image.tmdb.org/t/p/w300${peopleDetails.profile_path}`}
+                alt="poster"
+                onError={replaceImage}
+                className="rounded-lg"
+              />
+            )}
           </div>
           <div className="md:ml-24">
             <h2 className="text-4xl font-bold mb-3 text-white">

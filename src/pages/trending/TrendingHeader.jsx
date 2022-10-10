@@ -7,7 +7,7 @@ import { Pagination } from "swiper";
 import { useGlobalContext } from "../../context/GlobalContext";
 
 const TrendingHeader = () => {
-  const { allTrend } = useGlobalContext();
+  const { allTrend, loading } = useGlobalContext();
 
   const tvPosterPath = allTrend.map((tv) => tv.backdrop_path);
 
@@ -52,9 +52,17 @@ const TrendingHeader = () => {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-          {slideImg}
-        </Swiper>
+        {loading ? (
+          <div className="w-full mt-48 flex items-center justify-center space-x-2 animate-bounce">
+            <div className="w-8 h-8 bg-blue-400 rounded-full"></div>
+            <div className="w-8 h-8 bg-green-400 rounded-full"></div>
+            <div className="w-8 h-8 bg-black rounded-full"></div>
+          </div>
+        ) : (
+          <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+            {slideImg}
+          </Swiper>
+        )}
       </div>
     </div>
   );

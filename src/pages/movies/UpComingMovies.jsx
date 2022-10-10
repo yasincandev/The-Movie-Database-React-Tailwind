@@ -22,41 +22,48 @@ const UpComingMovies = () => {
             {dates.minimum} --- {dates.maximum}
           </h2>
         </div>
+        {loading ? (
+          <div className="w-full mt-48 flex items-center justify-center space-x-2 animate-bounce">
+            <div className="w-8 h-8 bg-blue-400 rounded-full"></div>
+            <div className="w-8 h-8 bg-green-400 rounded-full"></div>
+            <div className="w-8 h-8 bg-black rounded-full"></div>
+          </div>
+        ) : (
+          <Swiper
+            {...swiperProps}
+            modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
+          >
+            {upComingMovies.map((movie) => {
+              return (
+                <SwiperSlide key={movie.id}>
+                  <Link
+                    onClick={scrollToTop}
+                    to={`/movie/${movie.id}`}
+                    className=" flex flex-col gap-2"
+                    id={movie.id}
+                  >
+                    <div className="relative">
+                      <img
+                        className="rounded-lg"
+                        src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                        alt="movie"
+                      />
 
-        <Swiper
-          {...swiperProps}
-          modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
-        >
-          {upComingMovies.map((movie) => {
-            return (
-              <SwiperSlide key={movie.id}>
-                <Link
-                  onClick={scrollToTop}
-                  to={`/movie/${movie.id}`}
-                  className=" flex flex-col gap-2"
-                  id={movie.id}
-                >
-                  <div className="relative">
-                    <img
-                      className="rounded-lg"
-                      src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
-                      alt="movie"
-                    />
-
-                    <span className="absolute right-0 bottom-0 left-0 bg-yellow-400 rounded-full w-2 h-2 flex items-center justify-center p-4 ">
-                      {movie.vote_average}
-                    </span>
-                  </div>
-                  <div className="mt-10">
-                    <h1 className="text-sm lg:text-lg font-bold mt-4">
-                      {movie.title}
-                    </h1>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+                      <span className="absolute right-0 bottom-0 left-0 bg-yellow-400 rounded-full w-2 h-2 flex items-center justify-center p-4 ">
+                        {movie.vote_average}
+                      </span>
+                    </div>
+                    <div className="mt-10">
+                      <h1 className="text-sm lg:text-lg font-bold mt-4">
+                        {movie.title}
+                      </h1>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        )}
       </div>
     </div>
   );
