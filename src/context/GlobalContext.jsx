@@ -22,6 +22,7 @@ export const GlobalProvider = ({ children }) => {
   /* MOVIE FETCH AREA */
 
   useEffect(() => {
+    setLoading(true);
     const fetchMovies = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -29,9 +30,11 @@ export const GlobalProvider = ({ children }) => {
       setPopularMovies(data.results);
     };
     fetchMovies();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchTopRatedMovies = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -39,9 +42,11 @@ export const GlobalProvider = ({ children }) => {
       setTopRatedMovies(data.results);
     };
     fetchTopRatedMovies();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchUpcomingMovies = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -50,11 +55,13 @@ export const GlobalProvider = ({ children }) => {
       setDates(data.dates);
     };
     fetchUpcomingMovies();
+    setLoading(false);
   }, []);
 
   /* TV SHOW FETCH AREA */
 
   useEffect(() => {
+    setLoading(true);
     const fetchPopularTv = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -62,9 +69,11 @@ export const GlobalProvider = ({ children }) => {
       setPopularTv(data.results);
     };
     fetchPopularTv();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchTopRatedTv = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -72,9 +81,11 @@ export const GlobalProvider = ({ children }) => {
       setTopRatedTv(data.results);
     };
     fetchTopRatedTv();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchOnAirTv = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -82,11 +93,13 @@ export const GlobalProvider = ({ children }) => {
       setAirTv(data.results);
     };
     fetchOnAirTv();
+    setLoading(false);
   }, []);
 
   /* PEOPLE FETCH AREA */
 
   useEffect(() => {
+    setLoading(true);
     const fetchPeople = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -94,11 +107,13 @@ export const GlobalProvider = ({ children }) => {
       setPeople(data.results);
     };
     fetchPeople();
+    setLoading(false);
   }, []);
 
   /* TRENDING FETCH AREA */
 
   useEffect(() => {
+    setLoading(true);
     const fetchAllTrend = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`
@@ -106,9 +121,11 @@ export const GlobalProvider = ({ children }) => {
       setAllTrend(data.results);
     };
     fetchAllTrend();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchTrendMovies = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`
@@ -116,9 +133,11 @@ export const GlobalProvider = ({ children }) => {
       setTrendMovies(data.results);
     };
     fetchTrendMovies();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchTrendTv = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
@@ -126,9 +145,11 @@ export const GlobalProvider = ({ children }) => {
       setTrendTv(data.results);
     };
     fetchTrendTv();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchTrendPeople = async () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/trending/person/week?api_key=${process.env.REACT_APP_API_KEY}`
@@ -136,6 +157,7 @@ export const GlobalProvider = ({ children }) => {
       setTrendPeople(data.results);
     };
     fetchTrendPeople();
+    setLoading(false);
   }, []);
 
   /* SEARCH AREA */
