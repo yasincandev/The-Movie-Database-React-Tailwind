@@ -6,12 +6,20 @@ import { Pagination } from "swiper";
 import { useGlobalContext } from "../context/GlobalContext";
 
 const Header = () => {
-  const { images } = useGlobalContext();
+  const { images, loading } = useGlobalContext();
 
   const navImg = images.map((image) => {
     return (
       <SwiperSlide key={image}>
-        <img src={image} alt="movie" />
+        {loading ? (
+          <div className="w-full mt-48 flex items-center justify-center space-x-2 animate-bounce">
+            <div className="w-8 h-8 bg-blue-400 rounded-full"></div>
+            <div className="w-8 h-8 bg-green-400 rounded-full"></div>
+            <div className="w-8 h-8 bg-black rounded-full"></div>
+          </div>
+        ) : (
+          <img src={image} alt="" />
+        )}
       </SwiperSlide>
     );
   });

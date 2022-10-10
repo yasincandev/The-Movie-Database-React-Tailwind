@@ -1,5 +1,4 @@
 import Footer from "./components/Footer";
-
 import Home from "./components/Home";
 import { GlobalProvider } from "./context/GlobalContext";
 import { Routes, Route } from "react-router-dom";
@@ -10,14 +9,13 @@ import Trending from "./pages/trending/Trending";
 import MovieDetails from "./pages/details/MovieDetails";
 import TvShowDetails from "./pages/details/TvShowDetails";
 import PeopleDetails from "./pages/details/PeopleDetails";
-import SearchResults from "./pages/SearchResults";
+import SearchResults from "./pages/search/SearchResults";
 
 function App() {
   return (
     <GlobalProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/results" element={<SearchResults />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/tv" element={<TvShows />} />
@@ -25,6 +23,7 @@ function App() {
         <Route path="/trending" element={<Trending />} />
         <Route path="/people" element={<People />} />
         <Route path="/people/:id" element={<PeopleDetails />} />
+        <Route path="/search/:query" element={<SearchResults />} />
       </Routes>
       <Footer />
     </GlobalProvider>

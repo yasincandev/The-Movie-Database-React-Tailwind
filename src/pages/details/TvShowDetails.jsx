@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { A11y, Autoplay, FreeMode, Navigation, Pagination } from "swiper";
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import DetailsNavbar from "./DetailsNavbar";
@@ -16,7 +17,7 @@ const TvShowDetails = () => {
   const navigate = useNavigate();
   const tvShowId = id.id;
 
-  const { scrollToTop } = useGlobalContext();
+  const { scrollToTop, swiperProps } = useGlobalContext();
 
   useEffect(() => {
     const fetchTvShowDetails = async () => {
@@ -151,10 +152,8 @@ const TvShowDetails = () => {
         <h2 className="text-4xl font-semibold">Cast</h2>
       </div>
       <Swiper
-        slidesPerView={7}
-        spaceBetween={10}
-        modules={[Pagination]}
-        className="mySwiper"
+        {...swiperProps}
+        modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
       >
         {castInfoSlide}
       </Swiper>

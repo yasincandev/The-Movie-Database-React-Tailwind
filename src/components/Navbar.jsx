@@ -33,7 +33,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:ml-10 md:block md:space-x-8 md:pr-4">
-            <div className="ml-10 flex flex-col items-baseline space-x-4">
+            <div className="ml-10 flex  items-baseline space-x-4">
               <Link
                 to="/"
                 className="font-medium text-gray-500 hover:text-gray-900"

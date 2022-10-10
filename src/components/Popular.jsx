@@ -69,12 +69,13 @@ const Popular = () => {
   });
 
   return (
-    <div className="flex flex-col gap-7 w-11/12 p-4">
+    <div className="flex flex-col gap-7 w-11/12 px-5">
       <>
-        <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10  decoration-blue-400 dark:decoration-blue-600">
-          Movies
-        </h3>
-
+        <a href="/movies">
+          <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10  decoration-blue-400 dark:decoration-blue-600">
+            Movies
+          </h3>
+        </a>
         <Swiper
           {...swiperProps}
           modules={[Pagination, Navigation, A11y, FreeMode, Autoplay]}
@@ -82,11 +83,11 @@ const Popular = () => {
           {topRatedImagesSlide}
         </Swiper>
       </>
-
-      <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
-        Tv Shows
-      </h3>
-
+      <a href="/tv">
+        <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
+          Tv Shows
+        </h3>
+      </a>
       <div className=" w-full h-full">
         <Swiper
           {...swiperProps}
@@ -95,11 +96,11 @@ const Popular = () => {
           {popularTvImagesandLinks}
         </Swiper>
       </div>
-
-      <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
-        People
-      </h3>
-
+      <a href="/people">
+        <h3 className="mb-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl  underline underline-offset-3 decoration-10 decoration-blue-400 dark:decoration-blue-600">
+          People
+        </h3>
+      </a>
       <div className=" w-full h-full">
         <Swiper
           {...swiperProps}
